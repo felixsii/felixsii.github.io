@@ -1,6 +1,8 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const config = {
   preprocess: vitePreprocess(),
   kit: {
@@ -8,15 +10,16 @@ const config = {
       // Important for GitHub Pages!
       pages: 'build',
       assets: 'build',
-      fallback: null,
+      fallback: 'index.html', // This enables SPA mode
       precompress: false,
       strict: false
     }),
     paths: {
-      // base: '/felixsii.github.io' // ← your GitHub repo name
+      base: isProduction ? '/felixsii.github.io' : ''
     },
     prerender: {
-      entries: [
+      // Only prerender in development, use empty array for production
+      entries: isProduction ? [] : [
         '/',
         '/about',
         '/blue_2025',
@@ -30,7 +33,6 @@ const config = {
         if (path.startsWith('/images/')) {
           return;
         }
-        
         // Throw error for other missing resources
         throw new Error(message);
       }
