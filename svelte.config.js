@@ -1,12 +1,42 @@
 import adapter from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 
-/** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://svelte.dev/docs/kit/integrations
-	// for more information about preprocessors
-	preprocess: vitePreprocess(),
-	kit: { adapter: adapter() }
+  preprocess: vitePreprocess(),
+
+  kit: {
+    adapter: adapter({
+      // Important for GitHub Pages!
+      pages: 'build',
+      assets: 'build',
+      fallback: '404.html', // Better fallback for SPA
+      precompress: false,
+      strict: false
+    }),
+    paths: {
+      base: '/portfolio' // ← your GitHub repo name
+    },
+    prerender: {
+      entries: [
+        '/',
+        '/about',
+        '/blue_2025',
+        '/orange_2024', 
+        '/two_colors_2024',
+        '/stick_and_support_2024',
+        '/green_2024'
+      ],
+      handleHttpError: ({ path, referrer, message }) => {
+        // Ignore missing images during prerender
+        if (path.startsWith('/images/')) {
+          return;
+        }
+        
+        // Throw error for other missing resources
+        throw new Error(message);
+      }
+    }
+  }
 };
 
 export default config;
