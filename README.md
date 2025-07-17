@@ -11,7 +11,7 @@ npm install
 # Start development server
 npm run dev
 
-# Build for local testing
+# Build for production
 npm run build
 
 # Preview production build locally
@@ -20,7 +20,7 @@ npm run preview
 
 ## Deployment
 
-This site is configured for GitHub Pages deployment with the correct base path (`/felixsii.github.io`).
+This site is configured for GitHub Pages deployment. The build process creates a static site that works both locally and on GitHub Pages.
 
 ### Automatic Deployment (Recommended)
 
@@ -28,11 +28,11 @@ The site uses GitHub Actions for automatic deployment. Simply push to the `main`
 
 ### Manual Deployment
 
-If you need to build manually for GitHub Pages:
+If you need to build manually:
 
 ```bash
-# Build for GitHub Pages (with base path)
-npm run build:gh-pages
+# Build the site
+npm run build
 
 # The build output will be in the `build/` directory
 # Deploy the contents of `build/` to GitHub Pages
@@ -40,8 +40,9 @@ npm run build:gh-pages
 
 ## Configuration
 
-- **Development**: No base path, prerenders all pages
-- **Production**: Uses base path `/felixsii.github.io`, SPA mode with fallback
+- **Single build process**: Works for both development and production
+- **SPA mode**: Uses fallback for client-side routing
+- **Prerendered pages**: All pages are prerendered for better performance
 - **GitHub Pages**: Configured to serve from the `build/` directory
 
 ## Project Structure

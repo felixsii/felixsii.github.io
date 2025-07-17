@@ -1,8 +1,6 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 const config = {
   preprocess: vitePreprocess(),
   kit: {
@@ -15,11 +13,12 @@ const config = {
       strict: false
     }),
     paths: {
-      base: isProduction ? '/felixsii.github.io' : ''
+      // Don't set base path - GitHub Pages will handle it
+      base: ''
     },
     prerender: {
-      // Only prerender in development, use empty array for production
-      entries: isProduction ? [] : [
+      // Prerender all pages for better performance
+      entries: [
         '/',
         '/about',
         '/blue_2025',
