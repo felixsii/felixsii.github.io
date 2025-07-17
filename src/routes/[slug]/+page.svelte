@@ -90,7 +90,7 @@
 	</div>
 	
 	<!-- Artwork Details Column -->
-	<div class="lg:col-span-4 pr-8">
+	<div class="lg:col-span-4 pr-8 pb-5">
 		<h1 class="text-2xl font-light tracking-wide text-gray-900 mb-4">
 			{workData.title}
 		</h1>
