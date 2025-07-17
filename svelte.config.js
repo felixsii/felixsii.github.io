@@ -13,17 +13,17 @@ const config = {
       strict: false
     }),
     paths: {
-      base: '/felixsii.github.io' // ← your GitHub repo name
+      // base: '/felixsii.github.io' // ← your GitHub repo name
     },
     prerender: {
       entries: [
-        '/felixsii.github.io/',
-        '/felixsii.github.io/about',
-        '/felixsii.github.io/blue_2025',
-        '/felixsii.github.io/orange_2024',
-        '/felixsii.github.io/two_colors_2024',
-        '/felixsii.github.io/stick_and_support_2024',
-        '/felixsii.github.io/green_2024'
+        '/',
+        '/about',
+        '/blue_2025',
+        '/orange_2024',
+        '/two_colors_2024',
+        '/stick_and_support_2024',
+        '/green_2024'
       ],
       handleHttpError: ({ path, referrer, message }) => {
         // Ignore missing images during prerender
