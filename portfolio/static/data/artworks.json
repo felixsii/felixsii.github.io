@@ -1,0 +1,127 @@
+[
+  {
+    "slug": "blue_2025",
+    "title": "Blue",
+    "year": "2025",
+    "materials": "Papier maché, metal wire net",
+    "dimensions": "200 x 120 x 100 cm",
+    "description": "",
+    "images": [
+      {
+        "src": "/images/blue_2025/blue1.webp",
+        "alt": "Blue Composition",
+        "span": 1,
+        "thumbnail": true
+      },
+      {
+        "src": "/images/blue_2025/blue2.webp",
+        "alt": "Blue Composition",
+        "span": 1
+      },
+      {
+        "src": "/images/blue_2025/blue4.webp",
+        "alt": "Blue Composition",
+        "span": 1
+      }
+    ]
+  },
+  {
+    "slug": "orange_2024",
+    "title": "Orange",
+    "year": "2024",
+    "materials": "Papier maché, plaster, fibre cloth, metal wire net",
+    "dimensions": "150 x 90 x 20 cm",
+    "description": "",
+    "images": [
+      {
+        "src": "/images/orange_2024/orange_2024_1.webp",
+        "alt": "Orange",
+        "span": 1,
+        "thumbnail": true
+      },
+      {
+        "src": "/images/orange_2024/orange_2024_2.webp",
+        "alt": "Orange",
+        "span": 1
+      },
+      {
+        "src": "/images/orange_2024/orange_2024_3.webp",
+        "alt": "Orange",
+        "span": 1
+      }
+    ]
+  },
+  {
+    "slug": "two_colors_2024",
+    "title": "Two colors",
+    "year": "2024",
+    "materials": "Papier maché, plaster, metal wire net",
+    "dimensions": "60 x 40 x 40 cm",
+    "description": "",
+    "images": [
+      {
+        "src": "/images/two_colors_2024/two_colors_2024_1.webp",
+        "alt": "Two colors",
+        "span": 3
+      },
+      {
+        "src": "/images/two_colors_2024/two_colors_2024_2.webp",
+        "alt": "Two colors",
+        "span": 2
+      },
+      {
+        "src": "/images/two_colors_2024/two_colors_2024_3.webp",
+        "alt": "Two colors",
+        "span": 1,
+        "thumbnail": true
+      }
+    ]
+  },
+  {
+    "slug": "stick_and_support_2024",
+    "title": "Stick and support",
+    "year": "2024",
+    "materials": "Papier maché, plaster, fibre cloth, metal wire net, rusted metal",
+    "dimensions": "180 x 15 x 15 cm",
+    "description": "",
+    "images": [
+      {
+        "src": "/images/stick_and_support_2024/stick_and_support_2024_1.webp",
+        "alt": "Stick and support",
+        "span": 1,
+        "thumbnail": true
+      },
+      {
+        "src": "/images/stick_and_support_2024/stick_and_support_2024_2.webp",
+        "alt": "Stick and support",
+        "span": 1
+      },
+      {
+        "src": "/images/stick_and_support_2024/stick_and_support_2024_3.webp",
+        "alt": "Stick and support",
+        "span": 1
+      }
+    ]
+  },
+  {
+    "slug": "green_2024",
+    "title": "Green",
+    "year": "2024",
+    "materials": "Wool, flax, metal wire net, metal",
+    "dimensions": "80 x 40 x 20 cm",
+    "description": "",
+    "images": [
+      {
+        "src": "/images/green_2024/green_2024_1.webp",
+        "alt": "Green",
+        "span": 1,
+        "thumbnail": true
+      },
+      {
+        "src": "/images/green_2024/green_2024_2.webp",
+        "alt": "Green",
+        "span": 1
+      }
+    ]
+  }
+] 
