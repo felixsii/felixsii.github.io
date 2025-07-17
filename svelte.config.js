@@ -3,13 +3,12 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 const config = {
   preprocess: vitePreprocess(),
-
   kit: {
     adapter: adapter({
       // Important for GitHub Pages!
       pages: 'build',
       assets: 'build',
-      fallback: '404.html', // Better fallback for SPA
+      fallback: null,
       precompress: false,
       strict: false
     }),
