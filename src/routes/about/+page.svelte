@@ -26,7 +26,7 @@
 		<div class="aspect-[4/5] overflow-hidden rounded-xl">
 			<img 
 				src="/images/felix_portrait_2.webp" 
-				alt="Artist portrait"
+				alt="portrait"
 				class="w-full h-full object-cover"
 			/>
 		</div>
