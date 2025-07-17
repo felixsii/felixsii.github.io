@@ -25,7 +25,7 @@
 	<div class="lg:col-span-4 pr-8">
 		<div class="aspect-[4/5] overflow-hidden rounded-xl">
 			<img 
-				src="/images/felix_portrait.webp" 
+				src="/images/felix_portrait_2.webp" 
 				alt="Artist portrait"
 				class="w-full h-full object-cover"
 			/>
