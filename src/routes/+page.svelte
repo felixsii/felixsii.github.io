@@ -1,32 +1,15 @@
 <script lang="ts">
-	import OptimizedImage from '$lib/components/OptimizedImage.svelte';
-	
-	// Initialize empty artworks array
-	$: artworks = [];
-	
-	// Load JSON data
-	async function loadArtworks() {
-		try {
-			const response = await fetch('/data/artworks.json');
-			const data = await response.json();
-			
-			// Process artworks to get thumbnail info
-			artworks = data.map((artwork: any) => {
-				const thumbnailImage = artwork.images.find((img: any) => img.thumbnail);
-				return {
-					slug: artwork.slug,
-					title: artwork.title,
-					year: artwork.year,
-					thumbnail: thumbnailImage || artwork.images[0] // Fallback to first image if no thumbnail
-				};
-			});
-		} catch (error) {
-			console.error('Error loading artworks:', error);
-		}
-	}
-	
-	// Load data on component mount
-	loadArtworks();
+  import OptimizedImage from '$lib/components/OptimizedImage.svelte';
+  export let data;
+  let artworks = data.artworks.map((artwork: any) => {
+    const thumbnailImage = artwork.images.find((img: any) => img.thumbnail);
+    return {
+      slug: artwork.slug,
+      title: artwork.title,
+      year: artwork.year,
+      thumbnail: thumbnailImage || artwork.images[0]
+    };
+  });
 </script>
 
 <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
