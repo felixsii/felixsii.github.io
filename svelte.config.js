@@ -13,7 +13,7 @@ const config = {
       strict: false
     }),
     paths: {
-      base: '/portfolio' // ← your GitHub repo name
+      base: '/felixsii.github.io' // ← your GitHub repo name
     },
     prerender: {
       entries: [
