@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Felix Siivonen - Works</title>
+    <title>Felix Siivonen - Portfolio</title>
     <link rel="icon" href="static/favicon.svg">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -15,6 +15,9 @@
                     },
                     gridTemplateColumns: {
                         '20': 'repeat(20, minmax(0, 1fr))',
+                    },  
+                    fontFamily: {
+                        'sans': ['TikTok Sans', 'sans-serif'],
                     }
                 }
             }
@@ -46,6 +49,9 @@
             }
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
@@ -141,11 +147,11 @@
                     artworkElement.className = 'group block overflow-hidden rounded-lg';
                     
                     artworkElement.innerHTML = `
-                        <div class="overflow-hidden rounded-lg">
+                        <div class="h-[30rem] overflow-hidden rounded-lg bg-gray-100">
                             <img 
                                 src="static${thumbnailImage.src}" 
                                 alt="${thumbnailImage.alt}"
-                                class="w-full object-contain"
+                                class="w-full h-full object-cover"
                                 loading="lazy"
                             />
                         </div>
