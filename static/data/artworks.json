@@ -1,31 +1,5 @@
 [
   {
-    "slug": "[...]_2025",
-    "title": "[...]",
-    "year": "2025",
-    "materials": "Papier maché, plaster, metal mesh",
-    "dimensions": "200 x 120 x 100 cm",
-    "description": "",
-    "images": [
-      {
-        "src": "/images/[...]_2025/[...].webp",
-        "alt": "[...]",
-        "span": 1,
-        "thumbnail": true
-      },
-      {
-        "src": "/images/[...]_2025/[...]2.webp",
-        "alt": "[...]",
-        "span": 2
-      },
-      {
-        "src": "/images/[...]_2025/[...]3.webp",
-        "alt": "[...]",
-        "span": 3
-      }
-    ]
-  },
-  {
     "slug": "blue_2025",
     "title": "Blue",
     "year": "2025",

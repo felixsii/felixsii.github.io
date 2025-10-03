@@ -1,0 +1,7 @@
+{
+  "name": "felixsii-portfolio", 
+  "type": "module",
+  "scripts": {
+    "build": "node build-site.js"
+  }
+}
