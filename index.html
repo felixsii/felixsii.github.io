@@ -174,22 +174,35 @@
                 const aspectRatio = img.width / img.height;
                 const width = 2; // Base width
                 const height = width / aspectRatio;
-                const depth = Math.max(width, height) * 0.15; // Make depth proportional to size
+                const depth = Math.max(width, height) * 0.4; // Make depth more visible (40% of largest dimension)
                 
-                // Create materials - transparent sides, image on front
+                // Create materials - subtle colored sides to show depth, image on front
+                const sideColor = 0xffffff; // White sides
                 const materials = [
-                    new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 }), // right
-                    new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 }), // left
-                    new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 }), // top
-                    new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 }), // bottom
-                    new THREE.MeshBasicMaterial({ map: texture }), // front
-                    new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 })  // back
+                    new THREE.MeshStandardMaterial({ color: sideColor, metalness: 0.1, roughness: 0.8 }), // right
+                    new THREE.MeshStandardMaterial({ color: sideColor, metalness: 0.1, roughness: 0.8 }), // left
+                    new THREE.MeshStandardMaterial({ color: sideColor, metalness: 0.1, roughness: 0.8 }), // top
+                    new THREE.MeshStandardMaterial({ color: sideColor, metalness: 0.1, roughness: 0.8 }), // bottom
+                    new THREE.MeshStandardMaterial({ map: texture, metalness: 0.1, roughness: 0.8 }), // front
+                    new THREE.MeshStandardMaterial({ color: sideColor, metalness: 0.1, roughness: 0.8 })  // back
                 ];
                 
                 // Create cube with proper aspect ratio
                 const geometry = new THREE.BoxGeometry(width, height, depth);
                 const cube = new THREE.Mesh(geometry, materials);
                 scene.add(cube);
+                
+                // Add lighting to show the 3D effect
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+                scene.add(ambientLight);
+                
+                const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8);
+                directionalLight.position.set(5, 5, 5);
+                scene.add(directionalLight);
+                
+                const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.4);
+                directionalLight2.position.set(-5, -5, -5);
+                scene.add(directionalLight2);
                 
                 // Position camera to view the front face
                 const distance = Math.max(width, height) * 1.8;
@@ -234,8 +247,8 @@
                     const mouseX = e.clientX - centerX;
                     const mouseY = e.clientY - centerY;
                     
-                    // Normalize and apply rotation (max 20 degrees for more dramatic effect)
-                    const maxRotation = Math.PI / 9; // ~20 degrees
+                    // Normalize and apply rotation (max 25 degrees for more dramatic 3D effect)
+                    const maxRotation = Math.PI / 7.2; // ~25 degrees
                     targetRotationY = (mouseX / (rect.width / 2)) * maxRotation;
                     targetRotationX = -(mouseY / (rect.height / 2)) * maxRotation;
                 }
