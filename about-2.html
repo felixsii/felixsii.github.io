@@ -85,7 +85,6 @@
 				renderer.setAnimationLoop( animate );
 				container.appendChild( renderer.domElement );
 
-				stats = new Stats();
 				container.appendChild( stats.dom );
 
 				scene = new THREE.Scene();
@@ -204,14 +203,6 @@
 
 				}
 
-				const gui = new GUI();
-
-				gui.add( params, 'minScale', 1, 30 );
-				gui.add( params, 'maxScale', 1, 30 );
-				gui.add( params, 'rotate' );
-				gui.add( params, 'clear' );
-				gui.open();
-
 			}
 
 			function loadLeePerrySmith() {
@@ -287,8 +278,6 @@
 			function animate() {
 
 				renderer.render( scene, camera );
-
-				stats.update();
 
 			}
 
