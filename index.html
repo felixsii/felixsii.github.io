@@ -48,10 +48,26 @@
                 grid-template-columns: repeat(4, 1fr);
             }
         }
+        
+        /* Three.js canvas styling */
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=TikTok+Sans:opsz,wght@12..36,300..900&display=swap" rel="stylesheet">
+    
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.161.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.161.0/examples/jsm/"
+            }
+        }
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -112,7 +128,9 @@
         </div>
     </main>
 
-    <script>
+    <script type="module">
+        import * as THREE from 'three';
+
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -131,6 +149,108 @@
             }
         });
 
+        // Create a Three.js cube scene for each artwork
+        function createCubeScene(container, imageUrl, linkUrl) {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(50, 1, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            renderer.setClearColor(0xf3f4f6, 1); // bg-gray-100
+            container.appendChild(renderer.domElement);
+            
+            // Create cube with image texture on front face
+            const textureLoader = new THREE.TextureLoader();
+            const texture = textureLoader.load(`static${imageUrl}`, (loadedTexture) => {
+                loadedTexture.colorSpace = THREE.SRGBColorSpace;
+            });
+            
+            // Create materials for each face
+            const materials = [
+                new THREE.MeshBasicMaterial({ color: 0xf3f4f6 }), // right
+                new THREE.MeshBasicMaterial({ color: 0xf3f4f6 }), // left
+                new THREE.MeshBasicMaterial({ color: 0xf3f4f6 }), // top
+                new THREE.MeshBasicMaterial({ color: 0xf3f4f6 }), // bottom
+                new THREE.MeshBasicMaterial({ map: texture }), // front
+                new THREE.MeshBasicMaterial({ color: 0xf3f4f6 })  // back
+            ];
+            
+            // Create a slightly thicker cube for better perspective effect
+            const geometry = new THREE.BoxGeometry(2, 2, 0.2);
+            const cube = new THREE.Mesh(geometry, materials);
+            scene.add(cube);
+            
+            // Position camera to view the front face with slight perspective
+            camera.position.z = 3.5;
+            camera.lookAt(0, 0, 0);
+            
+            // Animation and interaction
+            let targetRotationX = 0;
+            let targetRotationY = 0;
+            let currentRotationX = 0;
+            let currentRotationY = 0;
+            
+            const animate = () => {
+                requestAnimationFrame(animate);
+                
+                // Smooth interpolation
+                currentRotationX += (targetRotationX - currentRotationX) * 0.1;
+                currentRotationY += (targetRotationY - currentRotationY) * 0.1;
+                
+                cube.rotation.x = currentRotationX;
+                cube.rotation.y = currentRotationY;
+                
+                renderer.render(scene, camera);
+            };
+            
+            // Hover effect
+            container.addEventListener('mouseenter', (e) => {
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                container.addEventListener('mousemove', handleMouseMove);
+            });
+            
+            container.addEventListener('mouseleave', () => {
+                targetRotationX = 0;
+                targetRotationY = 0;
+                container.removeEventListener('mousemove', handleMouseMove);
+            });
+            
+            function handleMouseMove(e) {
+                const rect = container.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const mouseX = e.clientX - centerX;
+                const mouseY = e.clientY - centerY;
+                
+                // Normalize and apply rotation (max 20 degrees for more dramatic effect)
+                const maxRotation = Math.PI / 9; // ~20 degrees
+                targetRotationY = (mouseX / (rect.width / 2)) * maxRotation;
+                targetRotationX = -(mouseY / (rect.height / 2)) * maxRotation;
+            }
+            
+            // Handle clicks - navigate to artwork page
+            container.addEventListener('click', () => {
+                window.location.href = linkUrl;
+            });
+            
+            // Handle resize
+            const resizeObserver = new ResizeObserver(() => {
+                const width = container.clientWidth;
+                const height = container.clientHeight;
+                camera.aspect = width / height;
+                camera.updateProjectionMatrix();
+                renderer.setSize(width, height);
+            });
+            resizeObserver.observe(container);
+            
+            animate();
+        }
+
         // Load and display artworks
         async function loadArtworks() {
             try {
@@ -142,22 +262,18 @@
                 artworks.forEach(artwork => {
                     const thumbnailImage = artwork.images.find(img => img.thumbnail) || artwork.images[0];
                     
-                    const artworkElement = document.createElement('a');
-                    artworkElement.href = `${artwork.slug}.html`;
-                    artworkElement.className = 'group block overflow-hidden rounded-lg';
+                    const artworkElement = document.createElement('div');
+                    artworkElement.className = 'group block overflow-hidden rounded-lg cursor-pointer';
                     
-                    artworkElement.innerHTML = `
-                        <div class="h-[30rem] overflow-hidden rounded-lg bg-gray-100">
-                            <img 
-                                src="static${thumbnailImage.src}" 
-                                alt="${thumbnailImage.alt}"
-                                class="w-full h-full object-cover"
-                                loading="lazy"
-                            />
-                        </div>
-                    `;
+                    const container = document.createElement('div');
+                    container.className = 'h-[30rem] overflow-hidden rounded-lg bg-gray-100';
+                    container.style.position = 'relative';
                     
+                    artworkElement.appendChild(container);
                     gallery.appendChild(artworkElement);
+                    
+                    // Create Three.js scene
+                    createCubeScene(container, thumbnailImage.src, `${artwork.slug}.html`);
                 });
             } catch (error) {
                 console.error('Error loading artworks:', error);
