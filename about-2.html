@@ -20,16 +20,13 @@
 
 			import * as THREE from 'three';
 
-			import Stats from 'three/addons/libs/stats.module.js';
-			import { GUI } from 'three/addons/libs/lil-gui.module.min.js';
-
 			import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 			import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 			import { DecalGeometry } from 'three/addons/geometries/DecalGeometry.js';
 
 			const container = document.getElementById( 'container' );
 
-			let renderer, scene, camera, stats;
+			let renderer, scene, camera;
 			let mesh;
 			let raycaster;
 			let line;
@@ -43,9 +40,9 @@
 			const intersects = [];
 
 			const textureLoader = new THREE.TextureLoader();
-			const decalDiffuse = textureLoader.load( 'textures/decal/decal-diffuse.png' );
+			const decalDiffuse = textureLoader.load( 'static/data/textures/decal-diffuse.png' );
 			decalDiffuse.colorSpace = THREE.SRGBColorSpace;
-			const decalNormal = textureLoader.load( 'textures/decal/decal-normal.jpg' );
+			const decalNormal = textureLoader.load( 'static/data/textures/decal-normal.jpg' );
 
 			const decalMaterial = new THREE.MeshPhongMaterial( {
 				specular: 0x444444,
