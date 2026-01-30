@@ -209,9 +209,9 @@
                 camera.position.z = distance;
                 camera.lookAt(0, 0, 0);
                 
-                // Random initial rotation for each cube
-                const randomRotationX = (Math.random() - 0.5) * 0.3; // Random between -0.15 and 0.15 radians (~-8.5 to 8.5 degrees)
-                const randomRotationY = (Math.random() - 0.5) * 0.3;
+                // Random initial rotation for each cube - increased for more visible 3D effect
+                const randomRotationX = (Math.random() - 0.5) * 0.8; // Random between -0.4 and 0.4 radians (~-23 to 23 degrees)
+                const randomRotationY = (Math.random() - 0.5) * 0.8;
                 
                 // Animation and interaction
                 let targetRotationX = randomRotationX;
