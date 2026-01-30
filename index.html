@@ -176,14 +176,14 @@
                 const height = width / aspectRatio;
                 const depth = Math.max(width, height) * 0.4; // Make depth more visible (40% of largest dimension)
                 
-                // Create materials - subtle colored sides to show depth, image on front
+                // Create materials - subtle colored sides to show depth, image on front (unlit to preserve brightness)
                 const sideColor = 0xffffff; // White sides
                 const materials = [
                     new THREE.MeshStandardMaterial({ color: sideColor, metalness: 0.1, roughness: 0.8 }), // right
                     new THREE.MeshStandardMaterial({ color: sideColor, metalness: 0.1, roughness: 0.8 }), // left
                     new THREE.MeshStandardMaterial({ color: sideColor, metalness: 0.1, roughness: 0.8 }), // top
                     new THREE.MeshStandardMaterial({ color: sideColor, metalness: 0.1, roughness: 0.8 }), // bottom
-                    new THREE.MeshStandardMaterial({ map: texture, metalness: 0.1, roughness: 0.8 }), // front
+                    new THREE.MeshBasicMaterial({ map: texture }), // front - unlit to preserve image brightness
                     new THREE.MeshStandardMaterial({ color: sideColor, metalness: 0.1, roughness: 0.8 })  // back
                 ];
                 
@@ -192,7 +192,7 @@
                 const cube = new THREE.Mesh(geometry, materials);
                 scene.add(cube);
                 
-                // Add lighting to show the 3D effect
+                // Add lighting to show the 3D effect on sides
                 const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
                 scene.add(ambientLight);
                 
@@ -209,11 +209,19 @@
                 camera.position.z = distance;
                 camera.lookAt(0, 0, 0);
                 
+                // Random initial rotation for each cube
+                const randomRotationX = (Math.random() - 0.5) * 0.3; // Random between -0.15 and 0.15 radians (~-8.5 to 8.5 degrees)
+                const randomRotationY = (Math.random() - 0.5) * 0.3;
+                
                 // Animation and interaction
-                let targetRotationX = 0;
-                let targetRotationY = 0;
-                let currentRotationX = 0;
-                let currentRotationY = 0;
+                let targetRotationX = randomRotationX;
+                let targetRotationY = randomRotationY;
+                let currentRotationX = randomRotationX;
+                let currentRotationY = randomRotationY;
+                
+                // Set initial rotation
+                cube.rotation.x = randomRotationX;
+                cube.rotation.y = randomRotationY;
                 
                 const animate = () => {
                     requestAnimationFrame(animate);
@@ -234,8 +242,8 @@
                 });
                 
                 container.addEventListener('mouseleave', () => {
-                    targetRotationX = 0;
-                    targetRotationY = 0;
+                    targetRotationX = randomRotationX;
+                    targetRotationY = randomRotationY;
                     container.removeEventListener('mousemove', handleMouseMove);
                 });
                 
