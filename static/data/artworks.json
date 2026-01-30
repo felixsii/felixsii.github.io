@@ -1,5 +1,47 @@
 [
   {
+    "slug": "uusi_outo_asia_2026",
+    "title": "Uusi outo asia",
+    "year": "2026",
+    "materials": "Papier maché, metal mesh, plaster, fibre cloth, chalk, metal",
+    "dimensions": "200 x 120 x 120 cm",
+    "description": "",
+    "images": [
+      {
+        "src": "/images/uusi_outo_asia_2026/uusi_outo_asia_2026_1.webp",
+        "alt": "Uusi outo asia",
+        "span": 3
+      },
+      {
+        "src": "/images/uusi_outo_asia_2026/uusi_outo_asia_2026_2.webp",
+        "alt": "Uusi outo asia",
+        "span": 1,
+        "thumbnail": true
+      }
+    ]
+  },
+  {
+    "slug": "stone_ache_2026",
+    "title": "Stone Ache",
+    "year": "2026",
+    "materials": "Papier maché, metal mesh, plaster, table",
+    "dimensions": "230 x 90 x 60 cm",
+    "description": "",
+    "images": [
+      {
+        "src": "/images/stone_ache_2026/stone_ache_2026_1.webp",
+        "alt": "[...]1",
+        "span": 1,
+        "thumbnail": true
+      },
+      {
+        "src": "/images/stone_ache_2026/stone_ache_2026_2.webp",
+        "alt": "[...]2",
+        "span": 3
+      }
+    ]
+  },
+  {
     "slug": "[...]_2025",
     "title": "[...]",
     "year": "2025",
